@@ -1,0 +1,42 @@
+{{template "base" .}}
+
+{{define "content"}}
+<div class="container my-5">
+    <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+      <div class="col p-3 p-lg-5 pt-lg-3">
+        <div class="col py-4">
+            <h1 class="display-5 fw-bold">Search Availability</h1>
+        </div>
+        <form method="post" action="search-availability" class="row g-3" method="get">
+            <input type="hidden" name="csrf_token" value="{{.CSRFToken}}"/>
+            <div class="form-row">
+                <div class="col">
+                    <div class="row" id="reservation-dates">
+                        <div class="col-6">
+                            <label for="start_date" class="form-label">Arrival Date</label>
+                            <input required class="form-control" type="text" name="start_date" placeholder="Arrival">
+                        </div>
+                        <div class="col-6">
+                            <label for="end_date" class="form-label">Arrival Date</label>
+                            <input required class="form-control" type="text" name="end_date" placeholder="Departure">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <button class="btn btn-primary" id="submit">Check Availability</button>
+            </div>
+        </form>
+    </div>
+  </div>
+{{end}}
+
+{{define "js" }}
+    <script>
+        const elem = document.getElementById('reservation-dates');
+        const rangePicker = new DateRangePicker(elem, {
+            format: "yyyy-mm-dd",
+            minDate: new Date(),
+        });
+    </script>
+{{end}}

@@ -1,0 +1,39 @@
+{{template "base" .}}
+
+{{define "content"}}
+<div class="container py-4">
+    <div class="p-5 mb-4 bg-light rounded-3">
+      <div class="container-fluid py-5">
+        <h1 class="display-5 fw-bold">Basic Suite - An Affordable Paradise</h1>
+        <p class="col-md-8 fs-4">Using a series of utilities, you can create this jumbotron, just like the one in previous versions of Bootstrap. Check out the examples below for how you can remix and restyle it to your liking.</p>
+        <a id="check_availability_button" href="#!" class="btn btn-success">Check Availability</a>
+      </div>
+    </div> 
+</div>
+{{end}}
+
+{{define "js"}}
+  <script>
+    document.getElementById("check_availability_button").addEventListener("click", function () {
+      let html = `
+      <form action="make-reservation" method="get">
+          <div class="form-row">
+              <div class="col m-2">
+                  <div class="row" id="reservation-dates-modal">
+                      <div class="col-6">
+                          <label for="start_date" class="form-label">Arrival Date</label>
+                          <input disabled required class="form-control" type="text" name="start_date" id="start_date" placeholder="Arrival">
+                      </div>
+                      <div class="col-6">
+                          <label for="end_date" class="form-label">Arrival Date</label>
+                          <input disabled required class="form-control" type="text" name="end_date" id="end_date" placeholder="Departure">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </form>
+      `
+      attention.custom({msg: html, title: "Choose Your Dates"})
+    })
+  </script>
+{{end}}
